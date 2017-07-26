@@ -1,0 +1,10 @@
+Criar sistema de controle de acesso
+	O controle de acesso terá dois níveis
+		Administrador
+		Cliente
+
+Cadastro de Usuário
+
+Cadastro de Cliente 
+	Ao cadastrar um cliente deverá criar um usuário no banco de dados.
+Cadastro de Beacon
