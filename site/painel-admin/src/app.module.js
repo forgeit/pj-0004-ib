@@ -1,7 +1,7 @@
 (function () {
 
-	'use strict';
+    'use strict';
 
-	angular.module('admin', []);
+    angular.module('admin', []);
 
 })();
