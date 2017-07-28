@@ -33,6 +33,9 @@ create table cliente
     foreign key (id_cidade) references cidade (id_cidade)
 );
 
+alter table cliente add column cpf_cnpj varchar(25) not null;
+alter table cliente add unique(cpf_cnpj);
+
 create table tipo_usuario
 (
     id_tipo_usuario integer,

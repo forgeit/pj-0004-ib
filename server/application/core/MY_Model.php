@@ -73,4 +73,31 @@ class MY_Model extends CI_Model {
         $this->db->where($coluna, $id);
         return $this->db->delete($this->table);
     }
+    
+    function buscarTotalPorValorEColuna($coluna = null, $valor = null) {
+        $this->db->where($coluna, $valor);
+        $num_rows = $this->db->count_all_results($this->table);
+        return $num_rows;
+    }
+    
+    function buscarTodosPermissao($coluna = null, $id = null, $sort = 'id', $order = 'asc') {
+        
+        if ($sort == 'id') {
+            $sort .= '_' . $this->table;
+        }
+        
+        $this->db->order_by($sort, $order);
+        
+        if (!is_null($id) && !is_null($coluna)) {
+            $this->db->where($coluna, $id);
+        }
+        
+        $query = $this->db->get($this->table);
+        
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
 }

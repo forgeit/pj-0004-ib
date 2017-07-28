@@ -3,8 +3,12 @@ Criar sistema de controle de acesso
 		Administrador
 		Cliente
 
-Cadastro de Usuário
-
 Cadastro de Cliente 
-	Ao cadastrar um cliente deverá criar um usuário no banco de dados.
+    Listar Clientes
+        Se usuário for administrador, listar todos os clientes registrados.
+        Se usuário for cliente, listar somente o seu cliente.
+
+	
+
+
 Cadastro de Beacon

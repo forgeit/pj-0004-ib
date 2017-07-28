@@ -8,6 +8,10 @@ class MY_Controller extends CI_Controller {
 
     protected $meuTokenAtual = null;
     protected $senha = "sistema_revendas_2016";
+    protected $administrador = 1;
+    protected $cliente = 2;
+    protected $ehAdmin = false;
+    protected $nomeColunaCliente = 'id_cliente';
 
     public function __construct() {
         parent::__construct();
@@ -33,6 +37,7 @@ class MY_Controller extends CI_Controller {
                     }
 
                     $this->meuTokenAtual = $retorno;
+                    $this->ehAdmin = $this->ehAdministrador();
                 } catch (Exception $ex) {
                     $this->retornar401($ex);
                 }
@@ -68,6 +73,39 @@ class MY_Controller extends CI_Controller {
         }
         
         return $retorno;
+    }
+    
+    protected function ehAdministrador() {
+        return $this->meuTokenAtual->id_usuario == $this->administrador;
+    }
+    
+    protected function validarEntrada($objeto, $coluna, $message) {
+        
+        if (!$objeto) {
+            $this->gerarRetorno(null, false, $message);
+            die();
+        }
+        
+        if (property_exists($objeto, $coluna)) {
+            
+            if (strlen($objeto->{$coluna}) == 0) {
+                $this->gerarRetorno(null, false, $message);
+                die();
+            }
+            
+            return true;
+        } else {
+            $this->gerarRetorno(null, false, $message);
+            die();
+        }
+        
+    }
+    
+    protected function validarValorUnico($total, $atributo) {
+        if ($total > 0) {
+            $this->gerarRetorno(null, false, 'O atributo ' . $atributo . ' já foi registrado na base de dados.');
+            die();
+        }    
     }
 
 }
