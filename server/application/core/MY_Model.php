@@ -80,6 +80,31 @@ class MY_Model extends CI_Model {
         return $num_rows;
     }
     
+    function buscarPorIdPermissao($idWhere = null, $coluna = null, $id = null, $where = null) {
+
+        if (is_null($where)) {
+            $where = 'id_' . $this->table;
+        }
+        
+        if (!is_null($id) && !is_null($coluna)) {
+            $this->db->where($coluna, $id);
+        }
+        
+        if (is_null($idWhere)) {
+            return null;
+        }
+        
+        $this->db->where($where, $idWhere);
+        
+        $query = $this->db->get($this->table);
+        
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null;
+        }
+    }
+    
     function buscarTodosPermissao($coluna = null, $id = null, $sort = 'id', $order = 'asc') {
         
         if ($sort == 'id') {

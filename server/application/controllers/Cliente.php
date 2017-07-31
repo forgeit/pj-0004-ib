@@ -10,6 +10,14 @@ class Cliente extends MY_Controller implements I_Controller {
 
     public function buscar() {
         
+        if ($this->ehAdmin) {
+            $retorno = $this->ClienteModel->buscarPorIdPermissao($this->uri->segment(3));
+        } else {
+            $retorno = $this->ClienteModel->buscarPorIdPermissao($this->nomeColunaCliente, $this->meuTokenAtual->id_cliente);
+        }        
+
+        $this->gerarRetorno($retorno);
+
     }
 
     public function buscarTodos() {
