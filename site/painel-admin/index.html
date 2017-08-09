@@ -2,11 +2,47 @@
 <html ng-app="admin">
 <head>
 	<title>Painel do Cliente - iB</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" type="text/css" href="../../bower_components/toastr/toastr.min.css">
+	<link rel="stylesheet" href="../../bower_components/AdminLTE/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="../../bower_components/AdminLTE/dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="../../bower_components/AdminLTE/dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" type="text/css" href="src/layout/estilo.css">
+	<base href="/site/painel-admin/">
 </head>
-<body>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div id="loading-bar-container"></div>	
+	<div class="wrapper">
+		<menu-topo></menu-topo>
+		<div class="content-wrapper">
+			<cabecalho></cabecalho>
+			<section class="content" ng-view></section>
+		</div>
+		<rodape></rodape>
+	</div>
+
 	<script type="text/javascript" src="../../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../../bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript" src="../../bower_components/ngstorage/ngStorage.min.js"></script>
+	<script type="text/javascript" src="../../bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+	<script type="text/javascript" src="../../bower_components/toastr/toastr.min.js"></script>
 
 	<script type="text/javascript" src="src/app.module.js"></script>
+	<script type="text/javascript" src="src/core/run.js"></script>
+	<script type="text/javascript" src="src/constants.js"></script>
+
+	<script type="text/javascript" src="src/core/auth/auth.module.js"></script>
+	<script type="text/javascript" src="src/core/auth/auth-token.factory.js"></script>
+	<script type="text/javascript" src="src/core/auth/auth-interceptor.factory.js"></script>
+
+	<script type="text/javascript" src="src/core/core.module.js"></script>
+	<script type="text/javascript" src="src/core/route.config.js"></script>
+
+	<script type="text/javascript" src="src/login/login.module.js"></script>
+	<script type="text/javascript" src="src/login/login.route.js"></script>
+	<script type="text/javascript" src="src/login/login.rest.js"></script>
+	<script type="text/javascript" src="src/login/login.js"></script>
 </body>
 </html>
