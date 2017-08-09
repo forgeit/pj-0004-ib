@@ -26,6 +26,7 @@ class Login extends MY_Controller {
             'id_usuario' => $usuario['id_usuario'],
             'nome' => $usuario['nome'],
             'id_cliente' => $usuario['id_cliente'],
+            'tipo' => $usuario['tipo'],
             'id_tipo_usuario' => $usuario['id_tipo_usuario'],
             'issuedAt'=> date(DATE_ISO8601, strtotime("now")),
             'dtBegin' => strtotime("now"),

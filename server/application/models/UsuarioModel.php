@@ -9,8 +9,9 @@ class UsuarioModel extends MY_Model {
 
     function verificarLogin($login, $senha) {
         $sql = "SELECT 
-                id_usuario, nome, id_cliente, id_tipo_usuario
-                FROM usuario
+                u.id_usuario, u.nome, u.id_cliente, u.id_tipo_usuario, tu.descricao AS tipo
+                FROM usuario u
+                JOIN tipo_usuario tu ON tu.id_tipo_usuario = u.id_tipo_usuario
                 WHERE login = ? AND senha = ?";
 
         $query = $this->db->query($sql, array($login, $senha));

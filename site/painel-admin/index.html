@@ -2,6 +2,7 @@
 <html ng-app="admin">
 <head>
 	<title>Painel do Cliente - iB</title>
+	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css" href="../../bower_components/toastr/toastr.min.css">
 	<link rel="stylesheet" href="../../bower_components/AdminLTE/bootstrap/css/bootstrap.min.css">
@@ -23,6 +24,9 @@
 		<rodape></rodape>
 	</div>
 
+	<script type="text/javascript" src="../../bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../bower_components/AdminLTE/dist/js/app.js"></script>
 	<script type="text/javascript" src="../../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../../bower_components/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="../../bower_components/ngstorage/ngStorage.min.js"></script>
@@ -40,9 +44,17 @@
 	<script type="text/javascript" src="src/core/core.module.js"></script>
 	<script type="text/javascript" src="src/core/route.config.js"></script>
 
+	<script type="text/javascript" src="src/layout/layout.module.js"></script>
+	<script type="text/javascript" src="src/layout/menu-topo.directive.js"></script>
+	<script type="text/javascript" src="src/layout/menu.js"></script>
+
 	<script type="text/javascript" src="src/login/login.module.js"></script>
 	<script type="text/javascript" src="src/login/login.route.js"></script>
 	<script type="text/javascript" src="src/login/login.rest.js"></script>
 	<script type="text/javascript" src="src/login/login.js"></script>
+
+	<script type="text/javascript" src="src/home/home.module.js"></script>
+	<script type="text/javascript" src="src/home/home.route.js"></script>
+	<script type="text/javascript" src="src/home/home.js"></script>
 </body>
 </html>
