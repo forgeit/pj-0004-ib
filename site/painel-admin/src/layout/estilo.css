@@ -88,3 +88,7 @@ table tr td:last-child {
     padding-top: 11px; 
     font-weight: bold;
 }
+
+.error-span {
+    color: #dd4b39;
+}

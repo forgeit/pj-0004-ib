@@ -17,9 +17,11 @@
 		function carregar() {
 			if (AuthToken.ler()) {
 				var payload = jwtHelper.decodeToken(AuthToken.ler());
+
 				$rootScope.usuarioLogado = {};
 				$rootScope.usuarioLogado.nome = payload.nome;
 				$rootScope.usuarioLogado.tipo = payload.tipo;
+				$rootScope.usuarioLogado.admin = payload.id_tipo_usuario == 1;
 			}
 		}
 

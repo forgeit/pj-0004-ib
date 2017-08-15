@@ -16,21 +16,27 @@ class Cliente extends MY_Controller implements I_Controller {
             $retorno = $this->ClienteModel->buscarPorIdPermissao($this->nomeColunaCliente, $this->meuTokenAtual->id_cliente);
         }        
 
+        $retorno['logotipo'] = $this->convertStringToFileObject($retorno['logotipo']);
+
         $this->gerarRetorno($retorno);
 
     }
 
     public function buscarTodos() {
+        $data = $this->security->xss_clean($this->input->raw_input_stream);
+        $dadosTabela = json_decode($data);
 
         $lista = array();
 
         if ($this->ehAdmin) {
-            $lista = $this->ClienteModel->buscarTodosPermissao();
+            $lista = $this->ClienteModel->buscarTodosPermissao($dadosTabela);
+            $total = $this->ClienteModel->buscarTotalPermissao();
         } else {
-            $lista = $this->ClienteModel->buscarTodosPermissao($this->nomeColunaCliente, $this->meuTokenAtual->id_cliente);
+            $lista = $this->ClienteModel->buscarTodosPermissao($dadosTabela, $this->nomeColunaCliente, $this->meuTokenAtual->id_cliente);
+            $total = $this->ClienteModel->buscarTotalPermissao($this->nomeColunaCliente, $this->meuTokenAtual->id_cliente);
         }
 
-        $this->gerarRetorno($lista);
+        $this->gerarRetornoDatatable($lista, $dadosTabela->draw, $total);
     }
 
     public function remover() {
@@ -52,7 +58,7 @@ class Cliente extends MY_Controller implements I_Controller {
 
         $id = $this->ClienteModel->inserirRetornaId($entrada);
 
-        $this->UsuarioModel->inserir($this->criarUsuarioDoCliente($entrada), $id);
+        $this->UsuarioModel->inserir($this->criarUsuarioDoCliente($entrada, $id));
 
         if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
@@ -72,6 +78,12 @@ class Cliente extends MY_Controller implements I_Controller {
         $this->validarEntrada($entrada, 'telefone', 'O atributo telefone é obrigatório');
         $this->validarEntrada($entrada, 'cpf_cnpj', 'O atributo CPF/CNPJ é obrigatório');
         $this->validarValorUnico($this->ClienteModel->buscarTotalPorValorEColuna('cpf_cnpj', $entrada->cpf_cnpj), 'CPF/CNPJ');
+        if ($this->valorExiste($entrada, 'logotipo')) {
+            if (!$this->validarTipoImagem($entrada->logotipo)) {
+                $this->gerarRetorno(null, false, 'O arquivo de logo é inválido.');
+            }
+            $entrada->logotipo = 'data:' . $entrada->logotipo->filetype . ';base64,' . $entrada->logotipo->base64;
+        }
     }
     
     private function criarUsuarioDoCliente($entrada, $id) {

@@ -1,0 +1,136 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<form novalidate name="form" ng-submit="vm.salvar()">
+				<div class="box-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Nome Fantasia: *</label>
+								<input name="nomeFantasia" type="text" class="form-control" placeholder="Informe o nome fantasia" required ng-model="vm.model.nome_fantasia">
+								<span ng-if="form.nomeFantasia.$dirty && form.nomeFantasia.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Razão Social:  *</label>
+								<input name="razaoSocial" type="text" class="form-control" placeholder="Informe a razão social" required ng-model="vm.model.razao_social">
+								<span ng-if="form.razaoSocial.$dirty && form.razaoSocial.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>CPF/CNPJ: *</label>
+								<input name="cpfCnpj" type="text" class="form-control" placeholder="Informe o CPF ou CNPJ" ui-br-cpfcnpj-mask ng-model="vm.model.cpf_cnpj" required>
+								<span ng-if="form.cpfCnpj.$dirty && form.cpfCnpj.$error.required" class="help-block error-span">Campo obrigatório.</span>
+								<span ng-if="form.cpfCnpj.$dirty && form.cpfCnpj.$error.cpf" class="help-block error-span">CPF inválido.</span>
+								<span ng-if="form.cpfCnpj.$dirty && form.cpfCnpj.$error.cnpj" class="help-block error-span">CNPJ inválido.</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Telefone: *</label>	
+								<input name="telefone" type="text" class="form-control" placeholder="Informe o telefone comercial" ui-br-phone-number ng-model="vm.model.telefone" required>
+								<span ng-if="form.telefone.$dirty && form.telefone.$error.required" class="help-block error-span">Campo obrigatório.</span>
+								<span ng-if="form.telefone.$dirty && form.telefone.$error.brPhoneNumber" class="help-block error-span">Telefone inválido.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Celular:</label>
+								<input name="celular" type="text" class="form-control" placeholder="Informe o telefone celular" ui-br-phone-number ng-model="vm.model.celular">
+								<span ng-if="form.celular.$dirty && form.celular.$error.brPhoneNumber" class="help-block error-span">Celular inválido.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Site:</label>
+								<input name="website" type="url" class="form-control" placeholder="Informe o site. Ex.: http://www.google.com" ng-model="vm.model.website">
+								<span ng-if="form.website.$dirty && form.website.$error.url" class="help-block error-span">Site inválido.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Responsável:</label>
+								<input type="text" class="form-control" placeholder="Informe o responsável pelo cliente" ng-model="vm.model.responsavel">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Cidade: *</label>
+								<select name="cidade" class="form-control" required ng-model="vm.model.id_cidade" ng-options="cidade.id_cidade as cidade.nome for cidade in vm.cidades">
+									<option value="">Selecione</option>
+								</select>
+								<span ng-if="form.cidade.$dirty && form.cidade.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Bairro: *</label>
+								<input name="bairro" type="text" class="form-control" placeholder="Informe o bairro" required ng-model="vm.model.bairro">
+								<span ng-if="form.bairro.$dirty && form.bairro.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Endereço: *</label>
+								<input name="endereco" type="text" class="form-control" placeholder="Informe o endereço" required ng-model="vm.model.endereco">
+								<span ng-if="form.endereco.$dirty && form.endereco.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>CEP:</label>
+								<input name="cep" type="text" class="form-control" placeholder="Informe o CEP" ui-br-cep-mask ng-model="vm.model.cep">
+								<span ng-if="form.cep.$dirty && form.cep.$error.required" class="help-block error-span">Campo obrigatório.</span>
+								<span ng-if="form.cep.$dirty && form.cep.$error.cep" class="help-block error-span">CEP inválido.</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Logo:</label><br>
+								<label class="btn btn-primary btn-flat" for="logotipo">Buscar Arquivo</label>
+								<input type="file" id="logotipo" class="hidden" base-sixty-four-input ng-model="vm.model.logotipo">
+							</div>
+						</div>
+					</div>
+					<div class="row" ng-if="vm.model.logotipo">
+						<div class="col-md-2">
+							<div class="thumbnail" style="border: 0;">
+								<img class="img-preview" ng-src="data:{{ vm.model.logotipo.filetype}};base64,{{ vm.model.logotipo.base64 }}">
+								<div class="caption">
+									<p>
+										<button type="button" class="btn btn-danger btn-flat" style="width: 100%;" role="button" ng-click="vm.model.logo = null;">Remover</button>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$invalid">Salvar</button> -->
+							<button type="submit" class="btn btn-primary btn-flat" >Salvar</button>
+							<button type="button" class="btn btn-primary btn-flat">Voltar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

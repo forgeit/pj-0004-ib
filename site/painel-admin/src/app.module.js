@@ -2,6 +2,11 @@
 
     'use strict';
 
-    angular.module('admin', ['admin.core', 'admin.login', 'admin.home', 'admin.layout']);
+    angular.module('admin', [
+    	'admin.core', 
+    	'admin.login', 
+    	'admin.cliente', 
+    	'admin.home', 
+    	'admin.layout']);
 
 })();

@@ -74,6 +74,27 @@ class MY_Controller extends CI_Controller {
         
         return $retorno;
     }
+
+    protected function gerarRetornoDatatable($data = null, $draw, $total, $exec = true, $message = "Sucesso ao efetuar operação.", $print = true) {
+        $retorno = array(
+            'exec' => $exec,
+            'message' => $message,
+            'data' => array(
+                    'datatables' => array(
+                        'draw' => $draw,
+                        'recordsTotal' => $total,
+                        'recordsFiltered' => $total,
+                        'data' => $data
+                    )
+                )
+        );
+
+        if ($print) {
+            print_r(json_encode($retorno));
+        }
+        
+        return $retorno;
+    }
     
     protected function ehAdministrador() {
         return $this->meuTokenAtual->id_usuario == $this->administrador;
@@ -100,12 +121,44 @@ class MY_Controller extends CI_Controller {
         }
         
     }
+
+    protected function valorExiste($objeto, $coluna) {
+        
+        if (!$objeto) {
+            return false;
+        }
+        
+        if (property_exists($objeto, $coluna)) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
     
     protected function validarValorUnico($total, $atributo) {
         if ($total > 0) {
             $this->gerarRetorno(null, false, 'O atributo ' . $atributo . ' já foi registrado na base de dados.');
             die();
         }    
+    }
+
+    protected function convertStringToFileObject($string) {
+
+        $array = explode(',', $string);
+
+        return $string ? array (
+            'filetype' => str_replace(';base64', '', str_replace('data:', '', $array[0])),
+            'base64' => $array[1]
+        ) : $string;
+    }
+
+    protected function validarTipoImagem($imagem) {
+        if ($imagem) {
+            return $imagem->filetype === 'image/jpeg' || $imagem->filetype === 'image/jpg' || $imagem->filetype === 'image/png';
+        } else {
+            return true;
+        }
     }
 
 }

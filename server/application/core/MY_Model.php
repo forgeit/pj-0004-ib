@@ -105,13 +105,17 @@ class MY_Model extends CI_Model {
         }
     }
     
-    function buscarTodosPermissao($coluna = null, $id = null, $sort = 'id', $order = 'asc') {
+    function buscarTodosPermissao($dadosDataTable, $coluna = null, $id = null, $sort = 'id', $order = 'asc') {
         
         if ($sort == 'id') {
             $sort .= '_' . $this->table;
         }
+
+        $colunaOrdem = $dadosDataTable->order[0]->column;
+        $dirOrdem = $dadosDataTable->order[0]->dir;
+        $colunaOrdem = $dadosDataTable->columns[$colunaOrdem]->data;
         
-        $this->db->order_by($sort, $order);
+        $this->db->order_by($colunaOrdem, $dirOrdem);
         
         if (!is_null($id) && !is_null($coluna)) {
             $this->db->where($coluna, $id);
@@ -124,5 +128,14 @@ class MY_Model extends CI_Model {
         } else {
             return null;
         }
+    }
+
+    function buscarTotalPermissao($coluna = null, $id = null) {
+        if (!is_null($id) && !is_null($coluna)) {
+            $this->db->where($coluna, $id);
+        }
+
+        $num_rows = $this->db->count_all_results($this->table);
+        return $num_rows;
     }
 }
