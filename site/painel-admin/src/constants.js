@@ -30,8 +30,7 @@
 	};
 
 	var configuracaoREST = {
-		// url: 'http://localhost:3336/server/'
-		url: 'http://ib.forgeit.com.br/server/'
+		url: window.location.hostname ? 'http://ib.forgeit.com.br/server/' : 'http://localhost:3336/server/'
 	};
 
 	core.constant('toastr', toastr);
