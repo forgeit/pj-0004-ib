@@ -12,7 +12,8 @@
 			carregar: carregar,
 			carregarComboCidades: carregarComboCidades,
 			lista: lista,
-			salvar: salvar
+			salvar: salvar,
+			remover: remover
 		};
 
 		return service;
@@ -31,6 +32,10 @@
 
 		function salvar(data) {
 			return $http.post(configuracaoREST.url + 'cliente/salvar', data);
+		}
+
+		function remover(data) {
+			return $http.post(configuracaoREST.url + 'cliente/remover/' + data);
 		}
 	}
 })();

@@ -23,7 +23,6 @@ class Cliente extends MY_Controller implements I_Controller {
     }
 
     public function buscarTodos() {
-        sleep(5);
         $data = $this->security->xss_clean($this->input->raw_input_stream);
         $dadosTabela = json_decode($data);
 
@@ -37,11 +36,27 @@ class Cliente extends MY_Controller implements I_Controller {
             $total = $this->ClienteModel->buscarTotalPermissao($this->nomeColunaCliente, $this->meuTokenAtual->id_cliente);
         }
 
-        $this->gerarRetornoDatatable($lista, $dadosTabela->draw, $total);
+        $this->gerarRetornoDatatable($lista == null ? array() : $lista, $dadosTabela->draw, $total);
     }
 
     public function remover() {
-        
+        if (!$this->ehAdmin) {
+            $this->gerarRetorno(null, false, 'Você não tem permissão para remover clientes.');
+            die();
+        } else {
+            $this->db->trans_begin();
+
+            $retorno = $this->UsuarioModel->excluir($this->uri->segment(3), 'id_cliente');
+            $retorno = $this->ClienteModel->excluir($this->uri->segment(3), 'id_cliente');
+
+            if ($this->db->trans_status() === FALSE) {
+                $this->db->trans_rollback();
+                $this->gerarRetorno(null, false, 'Não foi possível remover o cliente.');
+            } else {
+                $this->db->trans_commit();
+                $this->gerarRetorno();
+            }
+        }
     }
 
     public function salvar() {

@@ -13,6 +13,8 @@
 		vm.cidades = [];
 		vm.model = {};
 		vm.salvar = salvar;
+		vm.voltar = voltar;
+		vm.editar = false;
 
 		init();
 
@@ -25,6 +27,7 @@
 
 			function success(response) {
 				vm.model = response.data.data;
+				vm.editar = true;
 			}
 		}
 
@@ -54,15 +57,24 @@
 		}
 
 		function salvar() {
-			dataservice.salvar(vm.model).then(error).catch(success);
+			dataservice.salvar(vm.model).then(success).catch(error);
 
 			function error(response) {
 				console.log(response);
 			}
 
 			function success(response) {
-				console.log(response);
+				if (response.data.exec) {
+					toastr.success('Sucesso ao registrar o novo usuário.');
+					voltar();
+				} else {
+					toastr.error(response.data.message);
+				}
 			}
+		}
+
+		function voltar() {
+			$location.path('/cliente');
 		}
 
 	}

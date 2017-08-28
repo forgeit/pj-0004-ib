@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="box box-primary">
-			<form novalidate name="form" ng-submit="vm.salvar()">
+			<form novalidate name="form" ng-submit="vm.editar ? vm.atualizar() : vm.salvar()">
 				<div class="box-body">
 					<div class="row">
 						<div class="col-md-3">
@@ -23,7 +23,7 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label>CPF/CNPJ: *</label>
-								<input name="cpfCnpj" type="text" class="form-control" placeholder="Informe o CPF ou CNPJ" ui-br-cpfcnpj-mask ng-model="vm.model.cpf_cnpj" required>
+								<input ng-disabled="vm.editar" name="cpfCnpj" type="text" class="form-control" placeholder="Informe o CPF ou CNPJ" ui-br-cpfcnpj-mask ng-model="vm.model.cpf_cnpj" required>
 								<span ng-if="form.cpfCnpj.$dirty && form.cpfCnpj.$error.required" class="help-block error-span">Campo obrigatório.</span>
 								<span ng-if="form.cpfCnpj.$dirty && form.cpfCnpj.$error.cpf" class="help-block error-span">CPF inválido.</span>
 								<span ng-if="form.cpfCnpj.$dirty && form.cpfCnpj.$error.cnpj" class="help-block error-span">CNPJ inválido.</span>
@@ -124,9 +124,9 @@
 				<div class="box-footer">
 					<div class="row">
 						<div class="col-md-12">
-							<!-- <button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$invalid">Salvar</button> -->
-							<button type="submit" class="btn btn-primary btn-flat" >Salvar</button>
-							<button type="button" class="btn btn-primary btn-flat">Voltar</button>
+							<button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$invalid">Salvar</button>
+							<!-- <button type="submit" class="btn btn-primary btn-flat" >Salvar</button> -->
+							<button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar();">Voltar</button>
 						</div>
 					</div>
 				</div>

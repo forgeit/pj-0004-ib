@@ -58,17 +58,20 @@
 			}
 
 			function remover(aData) {
-				// dataservice.remover(aData.id).then(success).catch(error);
+				dataservice.remover(aData.id_cliente).then(success).catch(error);
 
-				// function error(response) {
-				// 	controller.feed(msg.MG013);				}
+				function error(response) {
+					toastr.error('Erro ao remover o cliente.');
+				}
 
-				// function success(response) {
-				// 	controller.feedMessage(response);
-				// 	if (response.data.status == 'true') {
-				// 		tabela.recarregarDados(vm.instancia);
-				// 	}
-				// }
+				function success(response) {
+					if (response.data.exec) {
+						toastr.success('Sucesso ao remover o cliente.');
+					} else {
+						toastr.error(response.data.message);
+					}
+					
+				}
 			}
 		}
 	}

@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = $_SERVER['SERVER_NAME'] === 'localhost' ? 'local' : 'default';
+$active_group = $_SERVER['SERVER_NAME'] === 'localhost' ? 'remote' : 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
@@ -94,6 +94,29 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db['remote'] = array(
+	'dsn'	=> '',
+	'hostname' => 'forgeit.com.br',
+	'username' => 'forge821_temp',
+	'password' => 'senhatemporaria',
+	'database' => 'forge821_ib_temporario',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => TRUE,
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
 
 $db['local'] = array(
 	'dsn'	=> '',
