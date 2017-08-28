@@ -23,6 +23,7 @@ class Cliente extends MY_Controller implements I_Controller {
     }
 
     public function buscarTodos() {
+        sleep(5);
         $data = $this->security->xss_clean($this->input->raw_input_stream);
         $dadosTabela = json_decode($data);
 

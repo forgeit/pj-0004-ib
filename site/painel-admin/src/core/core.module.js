@@ -7,6 +7,7 @@
     	'angular-jwt',
     	'ngStorage',
     	'ui.utils.masks',
+        'angular-loading-bar', 
     	'naif.base64',
     	'datatables', 
 		'datatables.bootstrap', 

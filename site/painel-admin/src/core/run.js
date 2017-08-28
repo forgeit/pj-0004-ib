@@ -4,9 +4,11 @@
 
 	angular
 		.module('admin')
-		.run(run);
+		.run(run)
+		.config(loading);
 
 	run.$inject = ['$rootScope', '$location', '$route', 'AuthToken'];
+	loading.$inject = ['cfpLoadingBarProvider'];
 
 	function run($rootScope, $location, $route, AuthToken) {
 		setRouteEvents();
@@ -36,5 +38,11 @@
 			$rootScope.$on('$routeChangeSuccess', routeChangeSuccess);	
 	   	}
 	}
+
+	function loading(cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+        cfpLoadingBarProvider.spinnerTemplate = '<div id="loader-wrapper"><h4><img style="width: 100px; heigth: 100px;" src="src/layout/core/logo.png" /><br/><img src="src/layout/core/loader.gif"/></h4></div>';
+	}
+
 
 })();
