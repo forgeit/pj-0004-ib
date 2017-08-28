@@ -70,15 +70,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'local';
+$active_group = $_SERVER['SERVER_NAME'] === 'localhost' ? 'local' : 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'beacons',
-	'password' => '78981_Lumina',
-	'database' => 'forge821_mathias',
+	'username' => 'forge821_temp',
+	'password' => 'senhatemporaria',
+	'database' => 'forge821_ib_temporario',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
