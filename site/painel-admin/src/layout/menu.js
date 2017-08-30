@@ -21,6 +21,7 @@
 				$rootScope.usuarioLogado = {};
 				$rootScope.usuarioLogado.nome = payload.nome;
 				$rootScope.usuarioLogado.tipo = payload.tipo;
+				$rootScope.usuarioLogado.id_cliente = payload.id_cliente;
 				$rootScope.usuarioLogado.admin = payload.id_tipo_usuario == 1;
 			}
 		}

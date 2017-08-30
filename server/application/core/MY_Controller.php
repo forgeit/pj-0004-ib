@@ -97,7 +97,7 @@ class MY_Controller extends CI_Controller {
     }
     
     protected function ehAdministrador() {
-        return $this->meuTokenAtual->id_usuario == $this->administrador;
+        return $this->meuTokenAtual->id_tipo_usuario == $this->administrador;
     }
     
     protected function validarEntrada($objeto, $coluna, $message) {

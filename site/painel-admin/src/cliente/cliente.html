@@ -111,10 +111,10 @@
 					<div class="row" ng-if="vm.model.logotipo">
 						<div class="col-md-2">
 							<div class="thumbnail" style="border: 0;">
-								<img class="img-preview" ng-src="data:{{ vm.model.logotipo.filetype}};base64,{{ vm.model.logotipo.base64 }}">
+								<img class="img-preview" ng-src="data:{{ vm.model.logotipo.filetype}};base64,{{ vm.model.logotipo.base64 }}" style="width: 100px;">
 								<div class="caption">
 									<p>
-										<button type="button" class="btn btn-danger btn-flat" style="width: 100%;" role="button" ng-click="vm.model.logo = null;">Remover</button>
+										<button type="button" class="btn btn-danger btn-flat" style="width: 100%;" role="button" ng-click="vm.model.logotipo = null;">Remover</button>
 									</p>
 								</div>
 							</div>

@@ -74,8 +74,13 @@ class MY_Model extends CI_Model {
         return $this->db->delete($this->table);
     }
     
-    function buscarTotalPorValorEColuna($coluna = null, $valor = null) {
+    function buscarTotalPorValorEColuna($coluna = null, $valor = null, $colunaId = null, $valorId = null) {
         $this->db->where($coluna, $valor);
+
+        if (!is_null($colunaId)) {
+            $this->db->where($colunaId . " <>", $valorId);
+        }
+        
         $num_rows = $this->db->count_all_results($this->table);
         return $num_rows;
     }

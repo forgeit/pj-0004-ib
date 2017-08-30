@@ -9,6 +9,7 @@
 
 	function dataservice($http, $location, $q, configuracaoREST, $httpParamSerializer) {
 		var service = {
+			atualizar: atualizar,
 			carregar: carregar,
 			carregarComboCidades: carregarComboCidades,
 			lista: lista,
@@ -17,6 +18,10 @@
 		};
 
 		return service;
+
+		function atualizar(id, data) {
+			return $http.post(configuracaoREST.url + 'cliente/atualizar/' + id, data);
+		}
 
 		function carregarComboCidades() {
 			return $http.get(configuracaoREST.url + 'cidade/buscarTodos');
