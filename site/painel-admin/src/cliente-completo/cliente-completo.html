@@ -1,0 +1,8 @@
+<uib-tabset active="vm.tabAtual">
+	<uib-tab index="0" heading="Dados">
+		<dados-cliente ng-controller="Cliente as vm"></dados-cliente>
+	</uib-tab>
+	<uib-tab index="1" heading="Beacon(s)" ng-if="vm.editar">
+		<dados-beacon ng-controller="Beacon as vm"></dados-beacon>
+	</uib-tab>
+</uib-tabset>

@@ -16,13 +16,13 @@
 				controllerAs: 'vm'
 			})
 			.when('/novo-cliente', {
-				templateUrl: 'src/cliente/cliente.html?' + new Date().getTime(),
-				controller: 'Cliente',
+				templateUrl: 'src/cliente-completo/cliente-completo.html?' + new Date().getTime(),
+				controller: 'ClienteCompleto',
 				controllerAs: 'vm'
 			})
 			.when('/novo-cliente/:id', {
-				templateUrl: 'src/cliente/cliente.html?' + new Date().getTime(),
-				controller: 'Cliente',
+				templateUrl: 'src/cliente-completo/cliente-completo.html?' + new Date().getTime(),
+				controller: 'ClienteCompleto',
 				controllerAs: 'vm'
 			})
 			.otherwise({

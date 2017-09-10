@@ -1,0 +1,103 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<div class="box-body">
+				<div class="row">
+					<div class="col-md-12" >
+						<lista></lista>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="box box-primary">
+			<div class="box-header">
+				Cadastro/Atualização de Beacon(s)
+			</div>
+			<div class="box-body">
+				<form novalidate name="form" ng-submit="vm.editar ? vm.atualizar() : vm.salvar()">
+
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="uiid">UIID:</label>
+								<input id="uiid" name="uiid" type="text" class="form-control" placeholder="Informe o UIID" required ng-model="vm.model.uiid">
+								<span ng-if="form.uiid.$dirty && form.uiid.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="identificacao">Identificação:</label>
+								<input id="identificacao" name="identificacao" type="text" class="form-control" placeholder="Informe a identificação" required ng-model="vm.model.identificacao">
+								<span ng-if="form.identificacao.$dirty && form.identificacao.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="periodo_maximo_bateria">Período Máximo da Bateria:</label>
+								<input id="periodo_maximo_bateria" name="periodo_maximo_bateria" type="number" class="form-control" placeholder="Informe o período máximo da bateria" required ng-model="vm.model.periodo_maximo_bateria">
+								<span ng-if="form.periodo_maximo_bateria.$dirty && form.periodo_maximo_bateria.$error.required" class="help-block error-span">Campo obrigatório.</span>
+								<span ng-if="form.periodo_maximo_bateria.$dirty && form.periodo_maximo_bateria.$error.number" class="help-block error-span">Valor deve ser númerico.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="dias_alerta_bateria">Dias para Receber Alerta:</label>
+								<input id="dias_alerta_bateria" name="dias_alerta_bateria" type="number" class="form-control" placeholder="Informe o período máximo da bateria" required ng-model="vm.model.dias_alerta_bateria">
+								<span ng-if="form.dias_alerta_bateria.$dirty && form.dias_alerta_bateria.$error.required" class="help-block error-span">Campo obrigatório.</span>
+								<span ng-if="form.dias_alerta_bateria.$dirty && form.dias_alerta_bateria.$error.number" class="help-block error-span">Valor deve ser númerico.</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="data_compra">Data de Compra:</label>
+								<input id="data_compra" name="data_compra" type="text" class="form-control" placeholder="Informe o período máximo da bateria" required ng-model="vm.model.data_compra" ui-date-mask="DD-MM-YYYY">
+								<span ng-if="form.data_compra.$dirty && form.data_compra.$error.required" class="help-block error-span">Campo obrigatório.</span>
+								<span ng-if="form.data_compra.$dirty && form.data_compra.$error.date" class="help-block error-span">Formato inválido (dd/mm/aaaa).</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="latitude">Latitude:</label>
+								<input id="latitude" name="latitude" type="number" class="form-control" placeholder="Informe o período máximo da bateria" required ng-model="vm.model.latitude">
+								<span ng-if="form.latitude.$dirty && form.latitude.$error.required" class="help-block error-span">Campo obrigatório.</span>
+								<span ng-if="form.latitude.$dirty && form.latitude.$error.number" class="help-block error-span">Valor deve ser númerico.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="longitude">Longitude:</label>
+								<input id="longitude" name="longitude" type="number" class="form-control" placeholder="Informe o período máximo da bateria" required ng-model="vm.model.longitude">
+								<span ng-if="form.longitude.$dirty && form.longitude.$error.required" class="help-block error-span">Campo obrigatório.</span>
+								<span ng-if="form.longitude.$dirty && form.longitude.$error.number" class="help-block error-span">Valor deve ser númerico.</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$invalid">Salvar</button>
+							<!-- <button type="submit" class="btn btn-primary btn-flat" >Salvar</button> -->
+							<button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar();">Voltar</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	
+	{{ vm.model | json }}
+
+
+</div>

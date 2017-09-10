@@ -10,6 +10,7 @@
         'angular-loading-bar', 
     	'naif.base64',
     	'datatables', 
+        'ui.bootstrap',
 		'datatables.bootstrap', 
     	'core.auth']);
 

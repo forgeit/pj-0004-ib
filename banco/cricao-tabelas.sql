@@ -55,3 +55,18 @@ create table usuario
     foreign key (id_cliente) references cliente (id_cliente),
     foreign key (id_tipo_usuario) references tipo_usuario (id_tipo_usuario)
 );
+
+create table beacon
+(
+    id_beacon integer auto_increment,
+    uiid varchar(45) not null unique,
+    identificacao varchar(255) not null,
+    periodo_maximo_bateria integer not null,
+    dias_alerta_bateria integer not null,
+    data_compra date not null,
+    latitude varchar(45) not null,
+    longitude varchar(45) not null,
+    id_cliente integer not null,
+    primary key (id_beacon),
+    foreign key (id_cliente) references cliente (id_cliente)
+);
