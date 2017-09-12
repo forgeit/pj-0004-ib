@@ -20,8 +20,8 @@
 			return $http.get(configuracaoREST.url + 'beacon/buscar/' + id);
 		}
 
-		function lista(data) {
-			return $http.post(configuracaoREST.url + 'beacon/buscarTodos', data);
+		function lista(id, data) {
+			return $http.post(configuracaoREST.url + 'beacon/buscarTodos/' + id, data);
 		}
 
 		function remover(data) {
