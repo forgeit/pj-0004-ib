@@ -67,6 +67,7 @@
 				function success(response) {
 					if (response.data.exec) {
 						toastr.success('Sucesso ao remover o cliente.');
+						tabela.recarregarDados(vm.instancia);
 					} else {
 						toastr.error(response.data.message);
 					}

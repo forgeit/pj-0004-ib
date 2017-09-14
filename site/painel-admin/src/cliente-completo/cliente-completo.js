@@ -18,7 +18,7 @@
 			vm.tabAtual = 0;
 		}
 
-		if ($routeParams.idBeacon) {
+		if ($routeParams.idBeacon || $routeParams.ehBeacon) {
 			vm.tabAtual = 1;
 			vm.jaVisiteiOsBeacons = true;
 		}

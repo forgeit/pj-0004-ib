@@ -14,13 +14,13 @@
 				Cadastro/Atualização de Beacon(s)
 			</div>
 			<div class="box-body">
-				<form novalidate name="form" ng-submit="vm.editar ? vm.atualizar() : vm.salvar()">
+				<form novalidate name="form" ng-submit="vm.editar ? vm.atualizar(form) : vm.salvar(form)">
 
 					<div class="row">
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="uiid">UIID:</label>
-								<input ng-disabled="!usuarioLogado.admin" id="uiid" name="uiid" type="text" class="form-control" placeholder="Informe o UIID" required ng-model="vm.model.uiid">
+								<input ng-disabled="!usuarioLogado.admin || vm.editar" id="uiid" name="uiid" type="text" class="form-control" placeholder="Informe o UIID" required ng-model="vm.model.uiid">
 								<span ng-if="form.uiid.$dirty && form.uiid.$error.required" class="help-block error-span">Campo obrigatório.</span>
 							</div>
 						</div>
@@ -56,7 +56,7 @@
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="data_compra">Data de Compra:</label>
-								<input ng-disabled="!usuarioLogado.admin" id="data_compra" name="data_compra" type="text" class="form-control" placeholder="Informe o período máximo da bateria" required ng-model="vm.model.data_compra" ui-date-mask="DD/MM/YYYY">
+								<input show-button-bar="false" type="text" uib-datepicker-popup="dd/MM/yyyy" is-open="focus" ng-focus="focus=true" name="data_compra" class="form-control" ng-model="vm.model.data_compra" required placeholder="Informe a data de compra">
 								<span ng-if="form.data_compra.$dirty && form.data_compra.$error.required" class="help-block error-span">Campo obrigatório.</span>
 								<span ng-if="form.data_compra.$dirty && form.data_compra.$error.date" class="help-block error-span">Formato inválido (dd/mm/aaaa).</span>
 							</div>
@@ -85,7 +85,7 @@
 						<div class="col-md-12">
 							<button ng-if="usuarioLogado.admin" type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$invalid">Salvar</button>
 							<!-- <button type="submit" class="btn btn-primary btn-flat" >Salvar</button> -->
-							<button type="button" class="btn btn-primary btn-flat" ng-click="vm.limpar();">Limpar</button>
+							<button type="button" class="btn btn-primary btn-flat" ng-click="vm.limpar(form);">Limpar</button>
 						</div>
 					</div>
 

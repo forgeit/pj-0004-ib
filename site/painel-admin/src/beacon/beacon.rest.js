@@ -11,7 +11,9 @@
 		var service = {
 			carregar: carregar,
 			lista: lista,
-			remover: remover
+			remover: remover,
+			salvar: salvar,
+			atualizar: atualizar
 		};
 
 		return service;
@@ -26,6 +28,14 @@
 
 		function remover(data) {
 			return $http.post(configuracaoREST.url + 'beacon/remover/' + data);
+		}
+
+		function salvar(data, idCliente) {
+			return $http.post(configuracaoREST.url + 'beacon/salvar/' + idCliente, data);
+		}
+
+		function atualizar(idCliente, data, idBeacon) {
+			return $http.post(configuracaoREST.url + 'beacon/atualizar/' + idCliente + '/' + idBeacon, data);
 		}
 	}
 })();

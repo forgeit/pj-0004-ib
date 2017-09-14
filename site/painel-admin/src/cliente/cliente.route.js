@@ -30,6 +30,11 @@
 				controller: 'ClienteCompleto',
 				controllerAs: 'vm'
 			})
+			.when('/novo-cliente/:id/pagina-beacons/:ehBeacon', {
+				templateUrl: 'src/cliente-completo/cliente-completo.html?' + new Date().getTime(),
+				controller: 'ClienteCompleto',
+				controllerAs: 'vm'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

@@ -14,6 +14,8 @@
 		vm.instancia = {};
 		vm.editar = false;
 		vm.limpar = limpar;
+		vm.salvar = salvar;
+		vm.atualizar = atualizar;
 
 		//Mensagens
 		var msg = controller.msg;
@@ -31,6 +33,7 @@
 			function success(response) {
 				if (response.data.exec) {
 					vm.model = response.data.data;
+					vm.model.data_compra = new Date(vm.model.data_compra);
 				} else {
 					toastr.error(response.data.message);
 				}
@@ -98,6 +101,12 @@
 				function success(response) {
 					if (response.data.exec) {
 						toastr.success('Sucesso ao remover o beacon.');
+
+						if ($routeParams.idBeacon) {
+							limpar();
+						}
+
+						tabela.recarregarDados(vm.instancia);
 					} else {
 						toastr.error(response.data.message);
 					}
@@ -105,8 +114,47 @@
 			}
 		}
 
-		function limpar() {
-			$location.path('novo-cliente/' + $routeParams.id);
+		function limpar(form) {
+			$location.path('novo-cliente/' + $routeParams.id + '/pagina-beacons/1');
+		}
+
+		function salvar(form) {
+			dataservice.salvar(vm.model, $routeParams.id).then(success).catch(error);
+
+			function error(response) {
+				console.log(response);
+				toastr.error('Ocorreu um erro ao salvar o beacon.');
+			}
+
+			function success(response) {
+				if (response.data.exec) {
+					toastr.success('Sucesso ao registrar o novo beacon.');
+					vm.model = {};
+					form.$setDirty();
+					form.$setPristine();
+					tabela.recarregarDados(vm.instancia);
+				} else {
+					toastr.error(response.data.message);
+				}
+			}
+		}
+
+		function atualizar(form) {
+			dataservice.atualizar($routeParams.id, vm.model, $routeParams.idBeacon).then(success).catch(error);
+
+			function error(response) {
+				console.error(response);
+				toastr.error('Ocorreu um erro ao atualizar o beacon.');
+			}
+
+			function success(response) {
+				if (response.data.exec) {
+					toastr.success('Sucesso ao atualizar o beacon.');
+					$location.path('novo-cliente/' + $routeParams.id + '/pagina-beacons/1');
+				} else {
+					toastr.error(response.data.message);
+				}
+			}
 		}
 	}
 
