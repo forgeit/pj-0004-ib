@@ -70,3 +70,14 @@ create table beacon
     primary key (id_beacon),
     foreign key (id_cliente) references cliente (id_cliente)
 );
+
+create table modelo_notificacao
+(
+    id_modelo_notificacao integer auto_increment,
+    descricao varchar(255) not null,
+    cod_externo integer not null unique,
+    max_width integer not null,
+    max_height integer not null,
+    imagem_exemplo longtext,
+    primary key (id_modelo_notificacao)
+);
