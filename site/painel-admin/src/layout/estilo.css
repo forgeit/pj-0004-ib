@@ -92,3 +92,49 @@ table tr td:last-child {
 .error-span {
     color: #dd4b39;
 }
+
+
+.thumbnail {
+    position:relative;
+    overflow:hidden;
+}
+ 
+.caption {
+    position:absolute;
+    top:-100%;
+    right:0;
+    background: rgb(0, 0, 0);
+    width:100%;
+    height:100%;
+    padding:2%;
+    text-align:center;
+    color:#fff !important;
+    z-index:2;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.caption-active {
+    position:absolute;
+    top:0%;
+    right:0;
+    background: rgba(184, 227, 255, 0.7);
+    width:100%;
+    height:100%;
+    padding:2%;
+    text-align:center;
+    color:black !important;
+    z-index:2;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.thumbnail:hover .caption {
+    top:0%;
+}

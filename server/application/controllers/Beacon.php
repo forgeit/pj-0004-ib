@@ -49,6 +49,18 @@ class Beacon extends MY_Controller {
         $this->gerarRetorno($retorno);
     }
 
+    public function buscarCombo() {
+        $retorno = null;
+
+        if ($this->ehAdmin) {
+            $retorno = $this->BeaconModel->buscarCombo();
+        } else {
+            $retorno = $this->BeaconModel->buscarCombo($this->nomeColunaCliente, $this->meuTokenAtual->id_cliente);
+        }
+
+        $this->gerarRetorno($retorno);
+    }
+
     public function remover() {
         if (!$this->ehAdmin) {
             $this->gerarRetorno(null, false, 'Você não tem permissão para remover clientes.');

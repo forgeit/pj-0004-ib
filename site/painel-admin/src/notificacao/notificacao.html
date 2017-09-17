@@ -1,0 +1,103 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="box box-primary">
+			<form novalidate name="form" ng-submit="vm.editar ? vm.atualizar() : vm.salvar()">
+				<div class="box-body">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Título: *</label>
+								<input name="titulo" type="text" class="form-control" placeholder="Informe o título da notificação" required ng-model="vm.model.titulo">
+								<span ng-if="form.titulo.$dirty && form.titulo.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Descrição: *</label>
+								<input name="descricao" type="text" class="form-control" placeholder="Informe o descrição da notificação" required ng-model="vm.model.descricao">
+								<span ng-if="form.descricao.$dirty && form.descricao.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Item Destaque: *</label>
+								<input name="item_destaque" type="text" class="form-control" placeholder="Informe o item em destaque da notificação" required ng-model="vm.model.item_destaque">
+								<span ng-if="form.item_destaque.$dirty && form.item_destaque.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Beacon: *</label>
+								<select name="beacon" class="form-control" required ng-model="vm.model.id_beacon" ng-options="beacon.id_beacon as beacon.uiid for beacon in vm.beacons">
+									<option value="">Selecione</option>
+								</select>
+								<span ng-if="form.beacon.$dirty && form.beacon.$error.required" class="help-block error-span">Campo obrigatório.</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Imagem Promoção:</label><br>
+								<label class="btn btn-primary btn-flat" for="imagem">Buscar Arquivo</label>
+								<input type="file" id="imagem" class="hidden" base-sixty-four-input ng-model="vm.model.imagem">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Situação:</label>
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" ng-model="vm.model.ativo"> Promoção está ativa
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<img class="img-preview" ng-src="data:{{ vm.model.imagem.filetype}};base64,{{ vm.model.imagem.base64 }}" style="width: 100px;">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							Modelo Selecionado: {{ vm.modelo }}
+						</div>
+						<div class="col-md-2" ng-repeat="modelo in vm.modelos" >
+							<div class="thumbnail">
+								<div class="caption-active" ng-if="modelo.id_modelo_notificacao == vm.model.id_modelo_notificacao">
+									<h4><b>{{ modelo.descricao }}</b></h4>
+									<p><span class="label label-danger">Modelo Selecionado</span></p>
+								</div>
+								<div class="caption">
+									<h4><b>{{ modelo.descricao }}</b></h4>
+									<p class="text-left"><b>Largura Permitida: {{ modelo.max_width }}px</b></p>
+									<p class="text-left"><b>Altura Permitida: {{ modelo.max_height }}px</b></p>
+									<p>
+										<button type="button" class="btn btn-primary btn-flat" ng-click="vm.utilizar( modelo.id_modelo_notificacao, modelo.descricao )">Utilizar</button>
+									</p>
+								</div>
+								<img src="{{ modelo.imagem_exemplo }}">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="box-footer">
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary btn-flat" ng-disabled="form.$invalid">Salvar</button>
+							<!-- <button type="submit" class="btn btn-primary btn-flat" >Salvar</button> -->
+							<button type="button" class="btn btn-primary btn-flat" ng-click="vm.voltar();">Voltar</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

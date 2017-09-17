@@ -30,6 +30,12 @@ class Cliente extends MY_Controller implements I_Controller {
         }
     }
 
+    public function buscarCombo() {
+        $retorno = null;
+        $retorno = $this->ClienteModel->buscarCombo();
+        $this->gerarRetorno($retorno);
+    }
+
     public function buscar() {
         $retorno = null;
 

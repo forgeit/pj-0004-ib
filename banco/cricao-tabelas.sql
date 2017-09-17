@@ -81,3 +81,20 @@ create table modelo_notificacao
     imagem_exemplo longtext,
     primary key (id_modelo_notificacao)
 );
+
+create table item_notificacao
+(
+    id_item_notificacao integer auto_increment,
+    titulo varchar(255) not null,
+    descricao text not null,
+    item_destaque text not null,
+    imagem longtext not null,
+    id_beacon integer not null,
+    id_modelo_notificacao integer not null,
+    primary key (id_item_notificacao),
+    foreign key (id_beacon) references beacon (id_beacon),
+    foreign key (id_modelo_notificacao) references modelo_notificacao (id_modelo_notificacao)
+);
+
+alter table item_notificacao add column ts_registro datetime;
+alter table item_notificacao add column ativo boolean;
