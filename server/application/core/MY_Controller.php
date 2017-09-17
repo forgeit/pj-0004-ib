@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller {
     private function checarLogin() {
         $seguro = true;
 
-        if ($this->uri->uri_string == 'login/entrar') {
+        if ($this->uri->uri_string == 'login/entrar' || $this->uri->uri_string == 'notificacao/buscarTodosAtivos') {
             $seguro = false;
         }
 

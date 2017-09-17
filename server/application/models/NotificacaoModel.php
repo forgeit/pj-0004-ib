@@ -36,6 +36,31 @@ class NotificacaoModel extends MY_Model {
         }
     }
 
+    function buscarTodosAtivos() {
+        $this->db->select('
+            c.id_cliente as idcliente, 
+            b.uiid as idbeacon, 
+            m.cod_externo as modelo, 
+            i.titulo,
+            i.descricao, 
+            i.item_destaque as itemdestaque, 
+            i.imagem, 
+            c.logotipo');
+
+        $this->db->from('item_notificacao i');
+        $this->db->join('beacon b', 'b.id_beacon = i.id_beacon');
+        $this->db->join('cliente c', 'c.id_cliente = b.id_cliente');
+        $this->db->join('modelo_notificacao m', 'm.id_modelo_notificacao = i.id_modelo_notificacao');
+
+        $query = $this->db->get();
+        
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
+        } else {
+            return null;
+        }
+    }
+
     function buscarTotalPermissaoNaoAdmin($coluna = null, $id = null) {
         $this->db->select('count(*)');
         $this->db->from('item_notificacao i');
