@@ -51,6 +51,7 @@ class NotificacaoModel extends MY_Model {
         $this->db->join('beacon b', 'b.id_beacon = i.id_beacon');
         $this->db->join('cliente c', 'c.id_cliente = b.id_cliente');
         $this->db->join('modelo_notificacao m', 'm.id_modelo_notificacao = i.id_modelo_notificacao');
+        $this->db->where('i.ativo', '1');
 
         $query = $this->db->get();
         
